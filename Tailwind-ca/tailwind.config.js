@@ -1,7 +1,14 @@
 module.exports = {
     content: ["./*.{html,js}"],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                
+            }
+        },
+        fontFamily: {
+            'Indie Flower': ['Indie Flower', `cursive` ] ,             
+        }
     },
     plugins: [],
 }
