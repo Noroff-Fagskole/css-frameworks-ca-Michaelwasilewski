@@ -9,7 +9,7 @@ const USER_SIGNUP_URL = API_BASE_URL + "api/v1/social/auth/register"
 
 //POSTS
 const CREATE_POST_URL = API_BASE_URL + "api/v1/social/posts"
-const GET_POSTS_URL = API_BASE_URL + "api/v1/social/posts"
+const GET_POSTS_URL = API_BASE_URL + "api/v1/social/posts/?_author=true&_comments=true&_reactions=true&&?sort=created&sortOrder=desc"
 const GET_POST_BY_ID_URL = API_BASE_URL + "api/v1/social/posts"
 const GET_USER_POSTS_URL = API_BASE_URL + `api/v1/social/profiles/${userName}?_posts=true`
 const DELETE_USER_POST_BY_ID = API_BASE_URL + `api/v1/social/posts`

@@ -1,6 +1,7 @@
 import {getToken} from "./utils/storage";
 import { CREATE_POST_URL } from "./settings/api";
 
+
 const createPostForm = document.querySelector("#post-form");
 console.log(createPostForm);
 const postTitle = document.querySelector("#post-title");

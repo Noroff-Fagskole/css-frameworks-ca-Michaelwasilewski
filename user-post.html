@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
-  <script type="module" src="/main.js" defer></script>
+  <title>Document</title>
+  <script src="/main.js" type="module" defer></script>
   <script src="/js/userPosts.js" type="module" defer></script>
-  <script src="/js/createPost.js" defer type="module"></script>
+
 </head>
 
 <body class="flex flex-col min-h-screen">
-  <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
+  <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900 sticky">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       <a href="/home.html"><span
           class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Memestagram</span></a>
@@ -53,7 +53,7 @@
           </svg>
         </button>
       </div>
-      <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="nav-bar">
+      <div id="nav-bar" class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1">
         <div class="relative mt-3 md:hidden">
           <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
             <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -75,7 +75,7 @@
               aria-current="page">Home</a>
           </li>
           <li>
-            <a href="/create-post.html"
+            <a href="#"
               class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><svg
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
@@ -97,80 +97,16 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="block md:grid md:grid-flow-row-dense md:grid-cols-3 md:grid-rows-1 ">
-      <div class="col-span-2">
-        <div class="flex flex-row px-2 py-3 mx-3">
-          <div class="w-auto h-auto rounded-full">
-            <img class="w-224 h-224 object-cover rounded-full shadow cursor-pointer" src="/img/profile-pic-tailwind.png"
-              alt="Profile Pic">
-          </div>
-        </div>
-        <div class="flex flex-col mb-2 ml-4 mt-1">
-          <div class="text-gray-600 text-sm font-semibold">Dragonking77</div>
-        </div>
-        <div class="flex flex-col mb-2 ml-4 mt-1">
-          <div class="text-gray-600 text-sm font-semibold">Email: Dragonking77@gmail.com</div>
-        </div>
-        <div class="flex flex-col mb-2 ml-4 mt-1">
-          <div class="text-gray-600 text-sm font-semibold">387 posts</div>
-        </div>
-        <div class="flex w-full mt-1 ml-4">
-          <div class="text-blue-700 font-base text-xs mr-1 cursor-pointer">Gamer</div>
-          <div class="text-gray-400 font-thin text-xs mr-1">2 hours ago</div>
-        </div>
-        <div class="flex w-full mt-1 ml-4">
-          <button class="justify-center capitalize inline-flex items-center rounded-md border border-transparent dark:bg-gray-900  px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" id="logout-btn">Log Out</button>
-        </div>
-        
-      </div>
-      <section class="bg-white ">
-        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-            <form 
-            id="post-form"
-            class="space-y-8">
-                <div>
-                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
-                    <input type="text" id="post-title" name="postTitle" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-900  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Enter your post title">
-                    <span
-                        id="titleError"
-                        class="hidden text-sm text-red-500"
-                >
-                    Post title is required
-                </span>
-                </div>
-                
-                <div class="sm:col-span-2">
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 ">Your message</label>
-                    <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg  border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Whats on your mind?"></textarea>
-                    <span
-                        id="postMessageError"
-                        class="hidden text-sm text-red-500"
-                >
-                    Post message is required
-                    </span>
-                </div>
-                <button class="justify-center capitalize inline-flex items-center rounded-md border border-transparent dark:bg-gray-900  px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    type="submit">
-                submit
-            </button>
-            </form>
-        </div>
-      </section>
+  <div class="flex flex-col gap-y-4 justify-start items-center p-8 h-screen posts">
+    <h2 class='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>Viewing posts</h2>
+    <div class="container py-6 mx-auto">
+        <ul
+            id="posts-container"
+            role="list"
+            class="divide-y divide-gray-200"
+        ></ul>
     </div>
-    <div class="flex flex-col gap-y-4 justify-start items-center p-8 posts">
-      <h2 class='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>Viewing my posts</h2>
-      <div class="container py-6 mx-auto">
-          <ul
-              id="posts-container"
-              role="list"
-              class="divide-y divide-gray-200"
-          ></ul>
-      </div>
-  </div>
-    
-  </main>
-  
+</div>
   <footer class='p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800'>
     <span class='text-sm text-gray-500 sm:text-center dark:text-gray-400'>© 2022 Memestagram. Made for educational
       purposes only.
@@ -190,6 +126,5 @@
       </li>
     </ul>
   </footer>
-  
 </body>
 </html>

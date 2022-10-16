@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 
 <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>Memestagram</title>
-    <link rel='preconnect' href='https://fonts.googleapis.com'>
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-    <link href='https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap' rel='stylesheet'>
-    <script type='module' src='/main.js' defer></script>
-    <script type="module" src="/js/getPosts.js" defer></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="main.js" defer type="module"></script>
+    <script src="/js/getPostId.js" type="module"></script>
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body>
     <nav class='bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900 sticky'>
         <div class='container flex flex-wrap justify-between items-center mx-auto'>
             <a href="/home.html"><span
@@ -55,7 +53,7 @@
                     </svg>
                 </button>
             </div>
-            <div class='hidden justify-between items-center w-full md:flex md:w-auto md:order-1' id='nav-bar'>
+            <div class='hidden justify-between items-center w-full md:flex md:w-auto md:order-1' id='navbar-search'>
                 <div class='relative mt-3 md:hidden'>
                     <div class='flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none'>
                         <svg class='w-5 h-5 text-gray-500' aria-hidden='true' fill='currentColor' viewBox='0 0 20 20'
@@ -99,54 +97,27 @@
             </div>
         </div>
     </nav>
-    <div class="flex flex-col gap-y-4 justify-start items-center p-8 posts">
-        <div class="flex items-center">
-            <p class="mr-6">Sort by:</p>
-            <button
-              id="filter-new"
-              type="button"
-              class="p-1.5 shadow border text-lg rounded-md text-white bg-slate-900"
-            >
-              Newest
-            </button>
-            <button
-              id="filter-old"
-              type="button"
-              class="p-1.5 shadow border text-lg rounded-md"
-            >
-              Oldest
-            </button>
-          </div>
-        <h2 class='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>Viewing posts</h2>
-        <div class="container py-6 mx-auto">
-            <ul
-                id="posts-container"
-                role="list"
-                class="divide-y divide-gray-200"
-            ></ul>     
-        </div>
-        <div class="posts__notification text-3xl text-yellow-500 capitalize"></div>
-    </div>
-    
+
+    <div id="post-details" class="container py-6 mx-auto"></div>
     <footer class='p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800'>
         <span class='text-sm text-gray-500 sm:text-center dark:text-gray-400'>© 2022 Memestagram. Made for educational
-          purposes only.
+            purposes only.
         </span>
         <ul class='flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0'>
-          <li>
-            <a href='#' class='mr-4 hover:underline md:mr-6 '>About</a>
-          </li>
-          <li>
-            <a href='#' class='mr-4 hover:underline md:mr-6'>Get started</a>
-          </li>
-          <li>
-            <a href='#' class='mr-4 hover:underline md:mr-6'>Support</a>
-          </li>
-          <li>
-            <a href='#' class='hover:underline'>Contact</a>
-          </li>
+            <li>
+                <a href='#' class='mr-4 hover:underline md:mr-6 '>About</a>
+            </li>
+            <li>
+                <a href='#' class='mr-4 hover:underline md:mr-6'>Get started</a>
+            </li>
+            <li>
+                <a href='#' class='mr-4 hover:underline md:mr-6'>Support</a>
+            </li>
+            <li>
+                <a href='#' class='hover:underline'>Contact</a>
+            </li>
         </ul>
-      </footer>
+    </footer>
 </body>
-</html>
 
+</html>
