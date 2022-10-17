@@ -61,7 +61,6 @@ async function getAllPosts() {
   if (response.ok) {
     data = await response.json();
     displayPosts(data);
-    console.log(data);
   } else {
     const error = await response.json();
     const errorMessage = `Error: ${error}`;

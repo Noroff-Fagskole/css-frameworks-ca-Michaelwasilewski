@@ -1,34 +1,33 @@
-import moment from "moment";
-import {GET_USER_POSTS_URL, DELETE_USER_POST_BY_ID} from "./settings/api"
-import {getToken} from "./utils/storage";
+import moment from 'moment';
+import { GET_USER_POSTS_URL, DELETE_USER_POST_BY_ID } from './settings/api';
+import { getToken } from './utils/storage';
 
-let now = moment(new Date()); // today's date
+let now = moment(new Date());
 const accessToken = getToken();
 
-const postsContainer = document.querySelector("#posts-container");
-const postsNotificationMessage = document.querySelector(".posts__notification");
+const postsContainer = document.querySelector('#posts-container');
+const postsNotificationMessage = document.querySelector('.posts__notification');
 
 async function getUserPosts() {
-    const response = await fetch(GET_USER_POSTS_URL, {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${accessToken}`
-        }
-    })
-    if (response.ok) {
-        const jsonResponse = await response.json();
-        console.log("GET MY POSTS SUCCEEDED");
-        postsContainer.innerHTML = "";
-        const {posts} = jsonResponse;
-        if (!posts.length) {
-            postsNotificationMessage.innerHTML = "Sorry you don't have posts currently";
-        } else {
-            const numberOfPosts = posts.length;
-            for (let i = 0; i < numberOfPosts; i++) {
-                const {created} = posts[i];
-                console.log(posts[i])
-                const secondsSinceCreated = now.diff(created, "seconds");
-                postsContainer.innerHTML += `
+  const response = await fetch(GET_USER_POSTS_URL, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  if (response.ok) {
+    const jsonResponse = await response.json();
+    postsContainer.innerHTML = '';
+    const { posts } = jsonResponse;
+    if (!posts.length) {
+      postsNotificationMessage.innerHTML =
+        "Sorry you don't have posts currently";
+    } else {
+      const numberOfPosts = posts.length;
+      for (let i = 0; i < numberOfPosts; i++) {
+        const { created } = posts[i];
+        const secondsSinceCreated = now.diff(created, 'seconds');
+        postsContainer.innerHTML += `
             <li class="relative px-4 py-5 bg-white gap-y-4 flex flex-col">
                 <div class="flex justify-between space-x-3">
                     <div class="flex-1 min-w-0">
@@ -57,72 +56,51 @@ async function getUserPosts() {
                         </a>
                 </div>
             </li>
-            `
-            }
-        }
-    } else {
-        postsNotificationMessage.innerHTML = await response.json()
-        console.log("GET MY POSTS FAILED!!  😥😥😥");
+            `;
+      }
     }
+  } else {
+    postsNotificationMessage.innerHTML = await response.json();
+  }
 }
 
 getUserPosts().then(() => {
-    handleDeleteBtnsEvents();
-})
+  handleDeleteBtnsEvents();
+});
 
 function handleDeleteBtnsEvents() {
-    // API CALL IS DONE AND WE HAVE THE POSTS CREATED WITH DELETE BTNS
-
-    // get all the btns with class
-    let deleteButtons = document.getElementsByClassName('delete-post-btn');
-    console.log("deleteButtons: ", deleteButtons);
-    // assign an event handler for each button
-    const totalNumberOfDeleteBtns = deleteButtons.length
-    for (let i = 0; i < totalNumberOfDeleteBtns; i++) {
-        console.log("the index of each delete BTN", i)
-        deleteButtons[i].addEventListener('click', function () {
-            console.log(`${i} hi, you have triggered click event.`);
-            console.log("this.dataset.postId: ", this.dataset)
-            console.log("this.dataset.postId: ", this.dataset.id);
-            console.log("this.dataset.postId: ", this.getAttribute("data-id"))
-            const postId = this.dataset.id;
-            //TODO Delete post by id
-            handleDeletePostById(postId);
-        });
-    }
+  let deleteButtons = document.getElementsByClassName('delete-post-btn');
+  const totalNumberOfDeleteBtns = deleteButtons.length;
+  for (let i = 0; i < totalNumberOfDeleteBtns; i++) {
+    deleteButtons[i].addEventListener('click', function () {
+      const postId = this.dataset.id;
+      //TODO Delete post by id
+      handleDeletePostById(postId);
+    });
+  }
 }
 
 function handleDeletePostById(id) {
-    //TODO delete post by id given
-    console.log(id)
-    console.log("delete post btn clicked ⭕ ⭕ ⭕ !! ")
-    //TODO Refresh page
-    // or go to home page
-    // or loop on the current posts and update then to avoid refresh ** very hard
-    const deleteUserById = async () => {
-        try {
-            let response = await fetch(`${DELETE_USER_POST_BY_ID}/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Authorization": `Bearer ${accessToken}`
-                }
-            });
-            if (response.status === 200) {
-                console.log("delete post success ⭕ ⭕ ⭕ !! ");
-                getUserPosts().then(() => {
-                    handleDeleteBtnsEvents();
-                });
-
-            } else {
-                const err = await response.json();
-                const message = `Sorry some error ${err}`;
-                //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Error
-                throw Error(message)
-            }
-        } catch (error) {
-            console.log(error)
-        }
+  const deleteUserById = async () => {
+    try {
+      let response = await fetch(`${DELETE_USER_POST_BY_ID}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      if (response.status === 200) {
+        getUserPosts().then(() => {
+          handleDeleteBtnsEvents();
+        });
+      } else {
+        const err = await response.json();
+        const message = `Sorry some error ${err}`;
+        throw Error(message);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    deleteUserById().then(r => {
-    });
+  };
+  deleteUserById().then((r) => {});
 }
